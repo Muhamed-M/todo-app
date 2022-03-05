@@ -1,0 +1,37 @@
+.todo-form {
+  margin-bottom: 2rem;
+}
+
+.todo-form__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.todo-form__top img {
+  cursor: pointer;
+}
+
+.todo-form__top-logo {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 8px;
+}
+
+.todo-form__input {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 1.25rem 2rem;
+  background-color: var(--color-2);
+  color: var(--color-3);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+}
+
+.todo-form__input::placeholder {
+  font-family: "Josefin Sans", sans-serif;
+}

@@ -1,0 +1,39 @@
+.todo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  border-bottom: 1px solid var(--color-6);
+  padding: 1.25rem 1rem;
+  color: var(--color-3);
+}
+
+.completed-todo {
+  text-decoration: line-through;
+  color: var(--color-6);
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--color-6);
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.custom-checkbox.active {
+  display: grid;
+  place-content: center;
+  background-image: var(--check-bg);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.custom-checkbox.active::before {
+  content: "\2713";
+  width: 100%;
+  height: 100%;
+}
