@@ -23,9 +23,6 @@ function App() {
     setTasks(
       tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task)
     )
-    setFiltered(
-      filtered.map(task => task.id === id ? { ...task, completed: !task.completed } : task)
-    )
   }
 
   // clear completed tasks
@@ -33,20 +30,12 @@ function App() {
     setTasks(
       tasks.filter(task => !task.completed)
     )
-    // clear tasks when user filters to completed tasks
-    setFiltered(
-      filtered.filter(task => !task.completed)
-    )
   }
 
   // delete single task
   const deleteTask = (id) => {
     setTasks(
       tasks.filter(task => task.id !== id)
-    );
-    // delete filtered task
-    setFiltered(
-      filtered.filter(task => task.id !== id)
     );
   };
 
@@ -73,6 +62,23 @@ function App() {
     )
   }
 
+  // Update filtered
+  useEffect(() => {
+    if (filterState === 'active') {
+      setFiltered(
+        tasks.filter((task) => {
+          return !task.completed
+        })
+      )
+    } else if (filterState === 'completed') {
+      setFiltered(
+        tasks.filter((task) => {
+          return task.completed
+        })
+      )
+    }
+  }, [tasks]);
+
   return (
     <div className='todo-app-container'>
       <TodoForm
@@ -85,14 +91,14 @@ function App() {
                 filterState === 'all' ?
                 tasks.length === 0 ?
                 <p className='default-text'>No tasks today!</p> :
-                tasks.map((task) => <Todo key={task.id} task={task} onCompleted={isCompleted} onDeleteTask={deleteTask} />) :
+                tasks.map((task) => <Todo key={task.id} task={task} setTasks={setTasks} onCompleted={isCompleted} onDeleteTask={deleteTask} />) :
                 filterState === 'active' ?
                 filtered.length === 0 ?
                 <p className='default-text'>No active tasks today!</p> :
-                filtered.map((task) => <Todo key={task.id} task={task} onCompleted={isCompleted} onDeleteTask={deleteTask}  />) :
+                filtered.map((task) => <Todo key={task.id} task={task} setTasks={setTasks} onCompleted={isCompleted} onDeleteTask={deleteTask}  />) :
                 filtered.length === 0 ?
                 <p className='default-text'>No completed tasks today</p> :
-                filtered.map((task) => <Todo key={task.id} task={task} onCompleted={isCompleted} onDeleteTask={deleteTask} />)
+                filtered.map((task) => <Todo key={task.id} task={task} setTasks={setTasks} onCompleted={isCompleted} onDeleteTask={deleteTask} />)
             }
         </ul>
         <div className="todo-list__bottom">
