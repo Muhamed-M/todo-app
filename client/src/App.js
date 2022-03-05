@@ -77,7 +77,7 @@ function App() {
         })
       )
     }
-  }, [tasks]);
+  }, [tasks, filterState]);
 
   return (
     <div className='todo-app-container'>
